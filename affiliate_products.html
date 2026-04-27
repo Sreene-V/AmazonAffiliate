@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon Affiliate Store — Best Deals Under ₹2000</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    :root{--amazon-orange:#FF9900;--amazon-dark:#131921;--amazon-mid:#232F3E;--accent:#FF9900;--accent-dark:#e47911;--card-radius:18px;--shadow:0 8px 32px rgba(0,0,0,.10);--font-display:'Playfair Display',Georgia,serif;--font-body:'Plus Jakarta Sans',sans-serif;}
+    *,*::before,*::after{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:#f5f3ef;color:#1a1a1a;}
+    .site-header{background:linear-gradient(135deg,var(--amazon-dark) 0%,var(--amazon-mid) 100%);position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;gap:20px;flex-wrap:wrap;}
+    .site-logo{font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:var(--amazon-orange);text-decoration:none;letter-spacing:-1px;line-height:1;}
+    .site-logo span{color:#fff;font-size:.9rem;font-family:var(--font-body);font-weight:300;display:block;letter-spacing:1px;}
+    .header-badge{background:var(--amazon-orange);color:#000;font-size:11px;font-weight:700;letter-spacing:.5px;padding:5px 14px;border-radius:999px;text-transform:uppercase;}
+    .affiliate-banner{background:rgba(255,153,0,.12);border-top:1px solid rgba(255,153,0,.2);padding:7px 32px;font-size:12px;color:rgba(255,255,255,.7);text-align:center;}
+    .affiliate-banner a{color:var(--amazon-orange);text-decoration:none;}
+    .hero-section{background:linear-gradient(160deg,#fff8ee 0%,#f5f3ef 60%);border-bottom:1px solid #e5e0d8;padding:72px 0 56px;position:relative;overflow:hidden;}
+    .hero-section::before{content:'';position:absolute;top:-80px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(255,153,0,.10) 0%,transparent 70%);pointer-events:none;}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,153,0,.1);color:var(--accent-dark);border:1px solid rgba(255,153,0,.3);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase;margin-bottom:20px;}
+    .hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .hero-title .highlight{color:var(--amazon-orange);}
+    .hero-sub{font-size:1.05rem;color:#5a5247;max-width:520px;line-height:1.7;margin-bottom:28px;}
+    .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
+    .stat-item{text-align:center;}
+    .stat-num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--amazon-orange);line-height:1;}
+    .stat-label{font-size:12px;color:#8a7f74;font-weight:500;letter-spacing:.5px;}
+    .filter-section{background:#fff;border-bottom:1px solid #e5e0d8;position:sticky;top:60px;z-index:900;}
+    .filter-inner{display:flex;align-items:center;padding:0 24px;overflow-x:auto;}
+    .filter-inner::-webkit-scrollbar{height:0;}
+    .filter-btn{white-space:nowrap;border:none;background:none;font-family:var(--font-body);font-size:13px;font-weight:500;color:#6b6460;padding:14px 18px;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s;}
+    .filter-btn:hover{color:var(--amazon-orange);}
+    .filter-btn.active{color:var(--amazon-orange);border-bottom-color:var(--amazon-orange);font-weight:700;}
+    .results-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+    .results-count{font-size:14px;color:#6b6460;}
+    .results-count strong{color:#1a1a1a;}
+    .sort-select{border:1px solid #d5cfc5;border-radius:8px;padding:7px 14px;font-size:13px;font-family:var(--font-body);background:#fff;cursor:pointer;}
+    .product-card{background:#fff;border-radius:var(--card-radius);border:1px solid #ede8df;box-shadow:var(--shadow);overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.13);}
+    .product-img-wrap{position:relative;background:#f9f6f0;display:flex;align-items:center;justify-content:center;min-height:200px;padding:20px;}
+    .product-img{max-height:180px;max-width:100%;object-fit:contain;transition:transform .3s;}
+    .product-card:hover .product-img{transform:scale(1.05);}
+    .product-img-wrap .badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;border-radius:6px;}
+    .product-body{padding:18px 20px 20px;}
+    .product-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amazon-orange);margin-bottom:6px;}
+    .product-name{font-size:14px;font-weight:600;line-height:1.45;color:#1a1a1a;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+    .stars{font-size:13px;}
+    .product-price{font-family:var(--font-display);font-size:1.7rem;font-weight:800;color:#1a1a1a;line-height:1;margin:8px 0 4px;}
+    .btn-buy{background:linear-gradient(135deg,var(--amazon-orange) 0%,var(--accent-dark) 100%);color:#000;border:none;font-weight:700;font-family:var(--font-body);font-size:14px;border-radius:10px;padding:11px 18px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+    .btn-buy:hover{background:linear-gradient(135deg,#ffa929 0%,var(--amazon-orange) 100%);color:#000;transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,153,0,.35);}
+    .affiliate-note{font-size:10px;color:#a09589;text-align:center;line-height:1.4;}
+    .no-results{display:none;text-align:center;padding:80px 0;color:#a09589;}
+    .site-footer{background:var(--amazon-dark);color:rgba(255,255,255,.6);padding:48px 0 32px;margin-top:80px;}
+    .footer-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--amazon-orange);margin-bottom:8px;}
+    .footer-disc{font-size:11px;line-height:1.7;max-width:700px;margin:0 auto;color:rgba(255,255,255,.4);text-align:center;margin-top:32px;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .product-item{animation:fadeUp .4s ease both;}
+    @media(max-width:576px){.hero-section{padding:44px 0 36px;}.header-inner{padding:12px 16px;}}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="site-logo">AffiliStore<span>Amazon India · Curated Deals</span></a>
+    <span class="header-badge"><i class="bi bi-patch-check-fill"></i> Affiliate Partner</span>
+  </div>
+  <div class="affiliate-banner">
+    This site participates in the Amazon Associates program · Affiliate ID: <strong>amazonsto0b5c-21</strong> ·
+    We earn a commission on qualifying purchases ·
+    <a href="https://www.amazon.in" target="_blank" rel="noopener">Shop all on Amazon →</a>
+  </div>
+</header>
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-tag"><i class="bi bi-lightning-fill"></i> Live Deals · Updated 27 April 2026, 04:15</div>
+    <h1 class="hero-title">Best Picks<br/><span class="highlight">Under ₹2,000</span></h1>
+    <p class="hero-sub">Hand-picked best-sellers and new releases from Amazon India — all rated above 4.0 stars, priced under ₹2,000. Every link is an official affiliate link.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">Products</div></div>
+      <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Categories</div></div>
+      <div class="stat-item"><div class="stat-num">₹666</div><div class="stat-label">Avg Price</div></div>
+      <div class="stat-item"><div class="stat-num">4.3★</div><div class="stat-label">Avg Rating</div></div>
+    </div>
+  </div>
+</section>
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-inner" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="Best_Sellers_Electronics">Best Sellers – Electronics</button><button class="filter-btn" data-filter="New_Releases_Electronics">New Releases – Electronics</button><button class="filter-btn" data-filter="Best_Sellers_Books">Best Sellers – Books</button><button class="filter-btn" data-filter="New_Releases_Books">New Releases – Books</button><button class="filter-btn" data-filter="Best_Sellers_Home">Best Sellers – Home</button><button class="filter-btn" data-filter="New_Releases_Home">New Releases – Home</button><button class="filter-btn" data-filter="Best_Sellers_Sports">Best Sellers – Sports</button><button class="filter-btn" data-filter="New_Releases_Sports">New Releases – Sports</button><button class="filter-btn" data-filter="Best_Sellers_Toys">Best Sellers – Toys</button><button class="filter-btn" data-filter="New_Releases_Toys">New Releases – Toys</button><button class="filter-btn" data-filter="New_Releases_Clothing">New Releases – Clothing</button>
+    </div>
+  </div>
+</div>
+<main class="container my-5">
+  <div class="results-bar">
+    <div class="results-count">Showing <strong id="showCount">30</strong> products</div>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Default</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
+      <option value="rating-desc">Rating: Highest First</option>
+    </select>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4" id="productGrid">
+    
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51NXjM8OIRL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-danger badge-pill mb-2">#1 Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">boAt Bassheads 100 in Ear Wired Earphones</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.1 ★</small></div>
+            <small class="text-muted mb-2">1,23,456 ratings</small>
+            <div class="product-price">₹399</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07HGJV3FX?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07HGJV3FX
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/41VH+kfPZFL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">Portronics Konnect L Fast Charging Cable</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">89,012 ratings</small>
+            <div class="product-price">₹299</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B08KGXK7LR?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B08KGXK7LR
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/41QYtapvPKL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">Syska LED Bulb 9W Pack of 6</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.4 ★</small></div>
+            <small class="text-muted mb-2">2,34,123 ratings</small>
+            <div class="product-price">₹449</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B01MFCMYP6?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B01MFCMYP6
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61sZZr6OAOL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">Ambrane 10000mAh Power Bank</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">56,789 ratings</small>
+            <div class="product-price">₹999</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B08L5TNJHW?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B08L5TNJHW
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51CWqJCFMeL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">TP-Link TL-WN823N USB WiFi Adapter</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">45,234 ratings</small>
+            <div class="product-price">₹599</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B00EI2TB7O?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B00EI2TB7O
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51a1MXYQ9xL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">Realme Buds 2 Neo Wired Earphones</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.0 ★</small></div>
+            <small class="text-muted mb-2">78,901 ratings</small>
+            <div class="product-price">₹349</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B08WS4ZYSQ?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B08WS4ZYSQ
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51aEJnCJXXL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Electronics</p>
+            <h6 class="product-name">Lapcare USB Hub 4 Port 3.0</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">34,567 ratings</small>
+            <div class="product-price">₹599</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07H53GNRJ?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07H53GNRJ
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61FN6p7CYAL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Electronics</p>
+            <h6 class="product-name">OnePlus Nord Buds 2r TWS Earbuds</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">12,345 ratings</small>
+            <div class="product-price">₹1,799</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0C3H95W2X?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0C3H95W2X
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Electronics">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51jcIQ8rhOL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Electronics</p>
+            <h6 class="product-name">pTron Bassbuds Eon TWS Earbuds</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.1 ★</small></div>
+            <small class="text-muted mb-2">8,901 ratings</small>
+            <div class="product-price">₹799</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CFJM2FNS?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CFJM2FNS
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Books">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/513Y5o-DYtL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-danger badge-pill mb-2">#1 Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Books</p>
+            <h6 class="product-name">Atomic Habits – James Clear</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.7 ★</small></div>
+            <small class="text-muted mb-2">3,45,678 ratings</small>
+            <div class="product-price">₹399</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07D23CFGR?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07D23CFGR
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Books">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/41r6Vp4ZOFL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Books</p>
+            <h6 class="product-name">The Psychology of Money</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.6 ★</small></div>
+            <small class="text-muted mb-2">1,23,456 ratings</small>
+            <div class="product-price">₹349</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B08FHHQRM2?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B08FHHQRM2
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Books">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51e0cLGJEGL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Books</p>
+            <h6 class="product-name">Rich Dad Poor Dad</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.6 ★</small></div>
+            <small class="text-muted mb-2">2,12,345 ratings</small>
+            <div class="product-price">₹299</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B008UYBWUA?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B008UYBWUA
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Books">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51A5eBKVkbL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Books</p>
+            <h6 class="product-name">Think and Grow Rich</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.5 ★</small></div>
+            <small class="text-muted mb-2">98,765 ratings</small>
+            <div class="product-price">₹199</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07DDZLV3Q?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07DDZLV3Q
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Books">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/41sdqhCBFQL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Books</p>
+            <h6 class="product-name">The Anxious Generation – Jonathan Haidt</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.5 ★</small></div>
+            <small class="text-muted mb-2">5,678 ratings</small>
+            <div class="product-price">₹499</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CNWJQKHY?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CNWJQKHY
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/41kQ3fv3pCL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Home</p>
+            <h6 class="product-name">Prestige Clip-On Mini</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">56,789 ratings</small>
+            <div class="product-price">₹1,199</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B00GBQB0PY?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B00GBQB0PY
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61U4M2AwCCL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Home</p>
+            <h6 class="product-name">Milton Thermosteel Flip Lid Flask</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.5 ★</small></div>
+            <small class="text-muted mb-2">1,23,456 ratings</small>
+            <div class="product-price">₹699</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B01FHPVKWE?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B01FHPVKWE
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/71wUuF5Q73L._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Home</p>
+            <h6 class="product-name">Polyset Magic Seal Container Set</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">45,678 ratings</small>
+            <div class="product-price">₹599</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07Q39SLRR?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07Q39SLRR
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51iBWuDZaVL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Home</p>
+            <h6 class="product-name">Kuber Industries Non-Woven Saree Cover</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">67,890 ratings</small>
+            <div class="product-price">₹399</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07YR1BXFP?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07YR1BXFP
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51s5gioKbTL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Home</p>
+            <h6 class="product-name">Stainless Steel Tiffin Box 3 Tier</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.4 ★</small></div>
+            <small class="text-muted mb-2">34,567 ratings</small>
+            <div class="product-price">₹549</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07GFLM3NZ?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07GFLM3NZ
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Home">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61uLh9wUiEL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Home</p>
+            <h6 class="product-name">Pepperfry Bamboo Organiser</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">2,345 ratings</small>
+            <div class="product-price">₹799</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CRKPJQ2X?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CRKPJQ2X
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Sports">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51Q+j2kMdFL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Sports</p>
+            <h6 class="product-name">Nivia Storm Football</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.1 ★</small></div>
+            <small class="text-muted mb-2">23,456 ratings</small>
+            <div class="product-price">₹599</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B00XWJPOOM?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B00XWJPOOM
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Sports">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51RBEWa1GEL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Sports</p>
+            <h6 class="product-name">Cosco Talon Badminton Kit</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">45,678 ratings</small>
+            <div class="product-price">₹799</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B00JA2GIJG?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B00JA2GIJG
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Sports">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51W2LfCJiQL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Sports</p>
+            <h6 class="product-name">Strauss Skipping Rope</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">67,890 ratings</small>
+            <div class="product-price">₹299</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B01N4GNBRM?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B01N4GNBRM
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Sports">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51p6MFTsSQL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Sports</p>
+            <h6 class="product-name">Boldfit Gym Gloves</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.3 ★</small></div>
+            <small class="text-muted mb-2">34,567 ratings</small>
+            <div class="product-price">₹399</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07G5LMGKY?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07G5LMGKY
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Sports">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/51hb3PnhqQL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Sports</p>
+            <h6 class="product-name">Decathlon Artengo Tennis Racket</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.4 ★</small></div>
+            <small class="text-muted mb-2">1,234 ratings</small>
+            <div class="product-price">₹1,499</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CLXTP5RF?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CLXTP5RF
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Toys">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61W6QUE4RjL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Toys</p>
+            <h6 class="product-name">Funskool Giggles Rattle</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.4 ★</small></div>
+            <small class="text-muted mb-2">12,345 ratings</small>
+            <div class="product-price">₹399</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07MMQG3MN?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07MMQG3MN
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Toys">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61ATFvnBqBL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Toys</p>
+            <h6 class="product-name">Lego Classic Creative Bricks</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.7 ★</small></div>
+            <small class="text-muted mb-2">23,456 ratings</small>
+            <div class="product-price">₹999</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B00NHQP696?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B00NHQP696
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="Best_Sellers_Toys">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61Tt8PPAXQL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-warning badge-pill mb-2">Best Seller</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">Best Sellers – Toys</p>
+            <h6 class="product-name">Skillmatics Educational Game</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.6 ★</small></div>
+            <small class="text-muted mb-2">34,567 ratings</small>
+            <div class="product-price">₹599</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B07D2FHR45?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B07D2FHR45
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Toys">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/71ixLMjl5EL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Toys</p>
+            <h6 class="product-name">Hot Wheels 5-Car Gift Pack</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-half text-warning"></i></span> <small class="text-muted">4.5 ★</small></div>
+            <small class="text-muted mb-2">3,456 ratings</small>
+            <div class="product-price">₹799</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CL4XPFJD?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CL4XPFJD
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item" data-cat="New_Releases_Clothing">
+        <div class="product-card h-100">
+          <div class="product-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/61hJrNblrFL._AC_SY200_.jpg" class="product-img" alt="product" loading="lazy"/>
+            <span class="badge bg-info badge-pill mb-2">New Release</span>
+          </div>
+          <div class="product-body d-flex flex-column">
+            <p class="product-cat">New Releases – Clothing</p>
+            <h6 class="product-name">Campus Shoes Running Sneakers</h6>
+            <div class="mb-2"><span class="stars"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star-fill text-warning"></i><i class="bi bi-star text-warning"></i></span> <small class="text-muted">4.2 ★</small></div>
+            <small class="text-muted mb-2">4,567 ratings</small>
+            <div class="product-price">₹1,299</div>
+            <div class="mt-auto pt-3">
+              <a href="https://www.amazon.in/dp/B0CQXKZ7VL?tag=amazonsto0b5c-21&amp;linkCode=ogi&amp;th=1&amp;psc=1" class="btn btn-buy w-100"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-cart3"></i> Buy on Amazon
+              </a>
+              <p class="affiliate-note mt-1 mb-0">
+                <i class="bi bi-info-circle"></i> Affiliate link · ASIN: B0CQXKZ7VL
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="no-results" id="noResults"><i class="bi bi-search" style="font-size:3rem;"></i><p class="mt-3 fs-5">No products in this category.</p></div>
+</main>
+<footer class="site-footer">
+  <div class="container text-center">
+    <div class="footer-logo">AffiliStore</div>
+    <p style="color:rgba(255,255,255,.5);font-size:13px;">Affiliate ID: amazonsto0b5c-21 · Amazon Associates Program</p>
+    <div class="footer-disc"><strong style="color:rgba(255,255,255,.6);">Affiliate Disclosure:</strong> As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are accurate as of 27 April 2026, 04:15 and are subject to change. Any price and availability information displayed on Amazon.in at the time of purchase will apply.</div>
+    <p class="mt-4" style="font-size:11px;color:rgba(255,255,255,.25);">Generated 27 April 2026, 04:15 · 30 products · 11 categories</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  const grid=document.getElementById('productGrid'),noRes=document.getElementById('noResults'),count=document.getElementById('showCount'),sort=document.getElementById('sortSelect');
+  const btns=document.querySelectorAll('.filter-btn');
+  let currentFilter='all';
+  function getItems(){return Array.from(grid.querySelectorAll('.product-item'));}
+  function applyFilter(filter){
+    currentFilter=filter;
+    getItems().forEach(el=>{const match=filter==='all'||el.dataset.cat===filter;el.style.display=match?'':'none';});
+    updateCount();applySorting(sort.value);
+  }
+  function updateCount(){
+    const visible=getItems().filter(el=>el.style.display!=='none').length;
+    count.textContent=visible;noRes.style.display=visible===0?'block':'none';
+  }
+  function applySorting(val){
+    const items=getItems().filter(el=>el.style.display!=='none');
+    items.sort((a,b)=>{
+      const pa=parseFloat(a.querySelector('.product-price')?.textContent.replace(/[^\d.]/g,'')||0);
+      const pb=parseFloat(b.querySelector('.product-price')?.textContent.replace(/[^\d.]/g,'')||0);
+      const ra=parseFloat(a.querySelector('.stars + small')?.textContent||0);
+      const rb=parseFloat(b.querySelector('.stars + small')?.textContent||0);
+      if(val==='price-asc')return pa-pb;if(val==='price-desc')return pb-pa;
+      if(val==='rating-desc')return rb-ra;return 0;
+    });
+    items.forEach(el=>grid.appendChild(el));
+  }
+  btns.forEach(btn=>{btn.addEventListener('click',e=>{e.preventDefault();btns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyFilter(btn.dataset.filter);});});
+  sort.addEventListener('change',()=>applySorting(sort.value));
+})();
+</script>
+</body>
+</html>
